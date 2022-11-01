@@ -1,0 +1,33 @@
+{
+  "name": "proyectobackendpeliculas",
+  "version": "0.0.1",
+  "description": "proyecto backend de web tipo netflix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosHidalgo95/proyectoBackendPeliculas.git"
+  },
+  "keywords": [
+    "backend",
+    "express",
+    "sql",
+    "sequelize"
+  ],
+  "author": "Carlos Hidalgo Sanchis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosHidalgo95/proyectoBackendPeliculas/issues"
+  },
+  "homepage": "https://github.com/carlosHidalgo95/proyectoBackendPeliculas#readme",
+  "dependencies": {
+    "mysql": "2.18.1",
+    "mysql2": "2.3.3",
+    "nodemon": "2.0.20",
+    "sequelize": "6.25.3",
+    "sequelize-cli": "6.5.2"
+  }
+}
