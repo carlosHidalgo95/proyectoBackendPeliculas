@@ -4,8 +4,7 @@
   "description": "proyecto backend de web tipo netflix",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,7 @@
   },
   "homepage": "https://github.com/carlosHidalgo95/proyectoBackendPeliculas#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "mysql": "2.18.1",
     "mysql2": "2.3.3",
     "nodemon": "2.0.20",
