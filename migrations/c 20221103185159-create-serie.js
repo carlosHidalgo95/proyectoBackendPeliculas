@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('movies', {
+    await queryInterface.createTable('series', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,6 +24,12 @@ module.exports = {
       age_rating: {
         type: Sequelize.STRING
       },
+      theater_release: {
+        type: Sequelize.BOOLEAN
+      },
+      id_article: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -33,8 +39,19 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addConstraint('series', {
+      fields: ['id_article'],
+      type: 'foreign key',
+      name: 'fk_article_series',
+      references: {
+        table: 'articles',
+        field: 'id'
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
+    })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('movies');
+    await queryInterface.dropTable('series');
   }
 };
