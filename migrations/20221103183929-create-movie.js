@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       release_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       age_rating: {
         type: Sequelize.STRING

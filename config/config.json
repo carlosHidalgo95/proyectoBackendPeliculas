@@ -1,26 +1,26 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "netflix",
-    "host": "127.0.0.1",
-    "port": "33061",
+    "password": "vsxtYjwgmBMXcc6aYANT",
+    "database": "railway",
+    "host": "containers-us-west-41.railway.app",
+    "port": "5816",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "root",
-    "database": "netflix",
-    "host": "127.0.0.1",
-    "port": "33061",
+    "password": "vsxtYjwgmBMXcc6aYANT",
+    "database": "railway",
+    "host": "containers-us-west-41.railway.app",
+    "port": "5816",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "root",
-    "database": "netflix",
-    "host": "127.0.0.1",
-    "port": "33061",
+    "password": "vsxtYjwgmBMXcc6aYANT",
+    "database": "railway",
+    "host": "containers-us-west-41.railway.app",
+    "port": "5816",
     "dialect": "mysql"
   }
 }

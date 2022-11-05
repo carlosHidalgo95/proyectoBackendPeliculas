@@ -1,13 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const moviesController = require('../controllers/moviesControllers')
+const express = require('express');
+const router = express.Router();
+const moviesController = require('../controllers/moviesControllers');
 
-const db = require('../db/db')
+const db = require('../db/db');
 
-router.get('/', moviesController.getMovies)
-router.get('/topRated', moviesController.getTopRatedMovies)
-router.get('/:id')
+router.get('/', moviesController.getMovies);
+router.get('/byId/:id',moviesController.getMoviesById);
+router.get('/byTitle/:title',moviesController.getMoviesByTitle);
+router.get('/byGenre/:genre',moviesController.getMoviesByGenre);
+router.get('/topRated', moviesController.getTopRatedMovies);
 
-
-
-module.exports = router
+module.exports = router;

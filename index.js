@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const db = require('./db/db')
+const db = require('./db/db');
+const winston = require('winston');
 
 const router = require('./router');
 

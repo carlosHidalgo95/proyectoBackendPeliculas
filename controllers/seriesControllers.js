@@ -1,16 +1,16 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
 
-const moviesController = {}
+const seriesController = {}
 
-moviesController.getMovies = async (req, res) => {
-    let resp = await models.movie.findAll();
+seriesController.getSeries = async (req, res) => {
+    let resp = await models.serie.findAll();
     res.send(resp);
 }
 
 /* This is a function that is getting a movie by its id. */
-moviesController.getMoviesById = async (req, res) => {
-    let resp = await models.movie.findAll({ 
+seriesController.getSeriesById = async (req, res) => {
+    let resp = await models.serie.findAll({ 
         where: { 
             id: req.params.id 
         }
@@ -18,8 +18,8 @@ moviesController.getMoviesById = async (req, res) => {
     res.send(resp);
 }
 
-moviesController.getMoviesByTitle = async (req, res) => {
-    let resp = await models.movie.findAll({ 
+seriesController.getSeriesByTitle = async (req, res) => {
+    let resp = await models.serie.findAll({ 
         where: { 
             title: req.params.title
         }
@@ -27,8 +27,8 @@ moviesController.getMoviesByTitle = async (req, res) => {
     res.send(resp);
 }
 
-moviesController.getMoviesByGenre = async (req, res) => {
-    let resp = await models.movie.findAll({ 
+seriesController.getSeriesByGenre = async (req, res) => {
+    let resp = await models.serie.findAll({ 
         where: { 
             genre: req.params.genre
         }
@@ -36,8 +36,8 @@ moviesController.getMoviesByGenre = async (req, res) => {
     res.send(resp);
 }
 
-moviesController.getTopRatedMovies = async (req, res) => {
-    let resp = await models.movie.findAll({
+seriesController.getTopRatedSeries = async (req, res) => {
+    let resp = await models.serie.findAll({
         where: {
             rating: {
                 [Op.gt]: 8
@@ -48,4 +48,4 @@ moviesController.getTopRatedMovies = async (req, res) => {
     res.send(resp);
 }
 
-module.exports = moviesController;
+module.exports = seriesController;
