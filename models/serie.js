@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     theater_release: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'series',
+    modelName: 'serie',
   });
   return serie;
 };
