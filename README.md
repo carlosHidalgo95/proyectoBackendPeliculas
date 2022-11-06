@@ -51,10 +51,11 @@ Recibe email y contraseña a través del body,busca un usuario con ese correo y 
 ### Orders
 **GET orders/getUserOrders**
 Devuelve los pedidos del usuario.Para que este endpoint funcione necesitaremos haber pasado antes por /auth/login, que nos habrá devuelto un json web token que deberemos añadir a la cabecera "Authorization" de las peticiones de la siguiente forma:
+![tempsnip](https://user-images.githubusercontent.com/50781684/200200244-c177a43b-6ab5-42b5-ba2a-37527b47e9b3.png)
 
 
 ## Variables de acceso a la base de datos
 - username:root
--password:vsxtYjwgmBMXcc6aYANT
--database:railway
--host:containers-us-west-41.railway.app
+- password:vsxtYjwgmBMXcc6aYANT
+- database:railway
+- host:containers-us-west-41.railway.app
