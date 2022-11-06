@@ -1,16 +1,23 @@
 const models = require('../models/index');
-const { Op } = require("sequelize");
+// const user=require("../models/user")
+const { Op, json } = require("sequelize");
+const jsonwebtoken = require("jsonwebtoken");
+
 
 const orderController = {}
 
 orderController.getOrdersByUser = async (req, res) => {
-    console.log("fuck");
-    let data=req.body;
-    console.log(data);
+    let data = req.auth;
+    let user = await models.user.findOne({
+        where: {
+            email: data.email
+        }
+    });
+
     let resp = await models.order.findAll(
         {
             where: {
-                id_user : data.id_user,
+                id_user: user.id,
             }
         }
     );

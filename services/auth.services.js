@@ -46,7 +46,6 @@ function encryptPassword(password) {
 }
 
 function verifyToken(req,res,next){
-    console.log("Al menos lo intenta");
 const bearerHeader= req.headers['authorization'];
 if(typeof bearerHeader!=="undefined"){
    const token= bearerHeader.split(" ")[1];
@@ -57,10 +56,20 @@ if(typeof bearerHeader!=="undefined"){
 }
 }
 
+async function isValidUserAndPassword(user, pass) {
+    const userFound = await models.user.findOne({ email: user });
+    if (userFound) {
+      const hash = encryptPassword(pass);
+      return hash === userFound.password;
+    }
+    return false;
+  }
+
 module.exports = {
   assertEmailIsUniqueService,
   assertEmailIsValid,
   createUserService,
   encryptPassword,
-  verifyToken
+  verifyToken,
+  isValidUserAndPassword
 };

@@ -37,12 +37,15 @@ async function authLoginController(req, res) {
     throw new Error("JWT_SECRET is not set");
   }
 
+/* Creating a JWT token. */
   const jwt = jsonwebtoken.sign({
     id: userFound.id,
     email: userFound.email,
     created: Date.now(),
-    role: userFound.role,
+    role: userFound.role
   }, secret);
+  let prueba=jsonwebtoken.decode(jwt,{complete:true});
+  console.log(prueba.payload);
 
   res.status(200).json({
     message: "Login successful",
@@ -53,13 +56,13 @@ async function authLoginController(req, res) {
 async function authRegisterController(req, res) {
     const body = req.body;
     // validate password
-    try {
-      assertValidPasswordService(body.password);
-    } catch (error) {
-      console.error(error);
-      res.status(400).json({ message: "Invalid password: " + error.message });
-      return;
-    }
+    // try {
+    //   assertValidPasswordService(body.password);
+    // } catch (error) {
+    //   console.error(error);
+    //   res.status(400).json({ message: "Invalid password: " + error.message });
+    //   return;
+    // }
     // validate email is unique
     try {
       await assertEmailIsUniqueService(body.email);
