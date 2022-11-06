@@ -18,6 +18,7 @@ moviesController.getMoviesById = async (req, res) => {
     res.send(resp);
 }
 
+/* This is a function that is getting a movie by its title. */
 moviesController.getMoviesByTitle = async (req, res) => {
     let resp = await models.movie.findAll({ 
         where: { 
@@ -30,7 +31,7 @@ moviesController.getMoviesByTitle = async (req, res) => {
 moviesController.getMoviesByGenre = async (req, res) => {
     let resp = await models.movie.findAll({ 
         where: { 
-            genre: req.params.genre
+            genre:{[Op.like]: "%"+req.params.genre+"%"}
         }
      });
     res.send(resp);
@@ -40,7 +41,7 @@ moviesController.getTopRatedMovies = async (req, res) => {
     let resp = await models.movie.findAll({
         where: {
             rating: {
-                [Op.gt]: 8
+                [Op.gt]: 4
             }
         }
     });

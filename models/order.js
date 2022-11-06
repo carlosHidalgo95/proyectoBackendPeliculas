@@ -11,14 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      order.hasOne(models.user,{ foreignKey: 'id'});
-      order.hasOne(models.article,{ foreignKey: 'id'});
+      order.hasOne(models.user, { foreignKey: 'id' });
+      order.hasOne(models.article, { foreignKey: 'id' });
     }
   }
   order.init({
-    id_order: DataTypes.INTEGER,
-    order_date: DataTypes.DATEONLY
-  }, {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    order_date: DataTypes.DATEONLY,
+    id_user:DataTypes.INTEGER,
+    id_article: DataTypes.INTEGER
+  },
+   {
     sequelize,
     modelName: 'order',
   });

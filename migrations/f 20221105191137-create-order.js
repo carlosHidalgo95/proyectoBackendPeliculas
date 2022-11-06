@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_order: {
-        type: Sequelize.INTEGER
-      },
       order_date: {
         type: Sequelize.DATEONLY
       },

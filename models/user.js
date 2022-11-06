@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    id_rol:{
+      type:DataTypes.INTEGER
     }
   }, {
     sequelize,

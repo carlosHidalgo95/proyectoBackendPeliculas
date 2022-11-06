@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./db/db');
-const winston = require('winston');
+require('dotenv').config();
 
 const router = require('./router');
 
@@ -13,7 +13,7 @@ app.use(router);
 app.listen(PORT, ()=>{
     console.log(`El servidor esta up y alojado en el puerto => ${PORT}`);
 
-    db.sync().then(()=> {
+    db.sync({force:true}).then(()=> {
         console.log("Conectados a la DB");
     }).catch(error => {
         console.log('Se ha producido un error: ' + error);
