@@ -55,14 +55,6 @@ async function authLoginController(req, res) {
 }
 async function authRegisterController(req, res) {
     const body = req.body;
-    // validate password
-    // try {
-    //   assertValidPasswordService(body.password);
-    // } catch (error) {
-    //   console.error(error);
-    //   res.status(400).json({ message: "Invalid password: " + error.message });
-    //   return;
-    // }
     // validate email is unique
     try {
       await assertEmailIsUniqueService(body.email);

@@ -21,11 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
-    },
-    title: DataTypes.STRING,
-    genre: DataTypes.STRING,
-    rating: DataTypes.STRING,
-    age_rating: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'article',

@@ -4,7 +4,12 @@ const { Op } = require("sequelize");
 const userController = {}
 
 userController.getUser = async (req, res) => {
-    let resp = await models.user.findAll();
+    let data=req.auth;
+    let resp = await models.user.findOne({
+        where: {
+            email: data.email
+        }
+    });
     res.send(resp);
 }
 
@@ -16,18 +21,6 @@ userController.getUsersById = async (req, res) => {
         }
      });
     res.send(resp);
-}
-
-userController.createUser=async(req,res)=>{
-    let data=req.body;
-    console.log(data);
-    console.log("-------");
-    console.log(data.email+"-"+data.password);
-    let resp = await models.user.create({
-        email: data.email,
-        password: data.password
-      });
-      res.send(resp);
 }
 
 userController.deleteUser=async(req,res)=>{

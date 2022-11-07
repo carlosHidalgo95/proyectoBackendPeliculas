@@ -3,10 +3,9 @@ const router = express.Router();
 const userController = require('../controllers/userControllers');
 
 const db = require('../db/db');
+const { authBearerMiddleware } = require('../middleware/auth.middleware');
 
-router.get('/', userController.getUser);
-router.post('/create',userController.createUser);
+router.get('/get',authBearerMiddleware, userController.getUser);
 router.delete('/delete',userController.deleteUser);
-// router.get('/byId/:id',userController.getSeriesById);
 
 module.exports = router;
