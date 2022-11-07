@@ -11,6 +11,7 @@ Parte backend para una aplicación tipo videoclub
 ### Resumen del proyecto
 El proyecto consta de 6 tablas:movies,series,articles,orders,users y rols. Además,algunos de los endpoints solo pueden ser ejecutados por usuarios con permisos para ello. Cualquiera puede sacar listados de peliculas y series,ya sea por ID,por titulo o por genero,además se pueden obtener las series que vayan a tener un pase en teatros o cines y las series que se vayan a emitir en los próximos 7 dias.En la parte de usuarios podemos registrar usuarios,logearnos,borrar usuarios (solo puede realizarlo el administrador) y editar nuestro usuario. En cuanto a los pedidos,un pedido solo contiene un único articulo,y un usuario puede obtener una lista de sus pedidos,así como generarlos.
 ## Diagrama Entidad Relación
+
 ![image](https://user-images.githubusercontent.com/50781684/200440159-3ac5eece-c8d2-48a3-8b24-98f3d3347cfd.png)
 
 ## Endpoints
@@ -43,7 +44,9 @@ Recibe email y contraseña a través del body,busca un usuario con ese correo y 
 ### Orders
 **GET orders/getUserOrders**
 Devuelve los pedidos del usuario.Para que este endpoint funcione necesitaremos haber pasado antes por /auth/login, que nos habrá devuelto un json web token que deberemos añadir a la cabecera "Authorization" de las peticiones de la siguiente forma:
+
 ![tempsnip](https://user-images.githubusercontent.com/50781684/200200244-c177a43b-6ab5-42b5-ba2a-37527b47e9b3.png)
+
 **GET orders/getAll**
 Devuelve todos los pedidos de la aplicación,es necesario loggearse antes con un usuario con el rol de administrador y pasar el token por la cabecera
 
