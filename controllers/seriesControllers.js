@@ -48,4 +48,16 @@ seriesController.getTopRatedSeries = async (req, res) => {
     res.send(resp);
 }
 
+seriesController.getComingSoonSeries=async(req,res)=>{
+    let resp = await models.serie.findAll({
+        where: {
+            release_date: {
+                [Op.between]: [new Date(), new Date().setDate(new Date().getDate() + 7)] 
+            }
+        }
+    });
+
+    res.send(resp);
+}
+
 module.exports = seriesController;

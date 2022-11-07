@@ -9,5 +9,6 @@ router.get('/byId/:id',seriesController.getSeriesById);
 router.get('/byTitle/:title',seriesController.getSeriesByTitle);
 router.get('/byGenre/:genre',seriesController.getSeriesByGenre);
 router.get('/topRated', seriesController.getTopRatedSeries);
+router.get('/comingSoon',seriesController.getComingSoonSeries);
 
 module.exports = router;

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    name: DataTypes.STRING
+    rol_name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'rol',

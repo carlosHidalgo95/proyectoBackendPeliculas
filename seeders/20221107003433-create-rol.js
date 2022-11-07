@@ -12,6 +12,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+     await queryInterface.bulkInsert('articles', [
+      {
+        id:1,
+        rol_name: "Admin",
+        createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+        updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+      },
+      {
+        id:2,
+        rol_name:"User",
+        createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+        updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
