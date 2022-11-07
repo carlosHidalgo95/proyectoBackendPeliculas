@@ -58,7 +58,8 @@ const authBearerMiddleware = async (req, res, next) => {
 
 
 const isValidRoleAdmin =  (req, res, next) => {
-  if (req.auth?.role === 'admin') {
+  console.log(req.auth?.role);
+  if (req.auth?.role === 1) {
     next();
   } else {
     res.status(403).json({ message: "You are not authorized" });

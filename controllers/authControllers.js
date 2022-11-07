@@ -42,7 +42,7 @@ async function authLoginController(req, res) {
     id: userFound.id,
     email: userFound.email,
     created: Date.now(),
-    role: userFound.role
+    role: userFound.id_rol
   }, secret);
   let prueba=jsonwebtoken.decode(jwt,{complete:true});
   console.log(prueba.payload);
