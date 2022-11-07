@@ -52,6 +52,7 @@ Devuelve todos los pedidos de la aplicación,es necesario loggearse antes con un
 
 ### Users
 **Los endpoint de users solo pueden ser realizados por usuarios loggeados.**
+
 **GET users/get**
 Recibe el token por la cabecera y muestra los datos del usuario.
 **DELETE users/delete**
