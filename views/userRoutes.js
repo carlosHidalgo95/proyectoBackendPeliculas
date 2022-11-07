@@ -7,5 +7,6 @@ const { authBearerMiddleware, isValidRoleAdmin } = require('../middleware/auth.m
 
 router.get('/get',authBearerMiddleware, userController.getUser);
 router.delete('/delete',authBearerMiddleware,isValidRoleAdmin,userController.deleteUser);
+router.put('/update',authBearerMiddleware,userController.updateUser);
 
 module.exports = router;

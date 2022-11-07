@@ -18,4 +18,16 @@ function deleteUser(email){
     return resp;
 }
 
-module.exports={findUser,deleteUser};
+function updateUser(email,newEmail,newPassword){
+    let resp=models.user.update(
+        {
+            email:newEmail,
+            password:newPassword
+        },
+        {
+            where: { email }
+        });
+        return resp;
+}
+
+module.exports={findUser,deleteUser,updateUser};

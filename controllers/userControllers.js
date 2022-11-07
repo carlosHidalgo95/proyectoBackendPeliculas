@@ -1,6 +1,7 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findUser,deleteUser}=require("../services/user.services")
+const {findUser,deleteUser,updateUser}=require("../services/user.services")
+const {encryptPassword}=require('../services/auth.services')
 
 const userController = {}
 
@@ -10,24 +11,9 @@ userController.getUser = async (req, res) => {
     res.send(resp);
 }
 
-/* This is a function that is getting a movie by its id. */
-// userController.getUsersById = async (req, res) => {
-//     let resp = await models.user.findAll({ 
-//         where: { 
-//             id: req.params.id 
-//         }
-//      });
-//     res.send(resp);
-// }
-
 userController.deleteUser=async(req,res)=>{
     try{
         let data=req.auth;
-        // let resp=await models.user.destroy({
-        //     where: {
-        //     email:data.email,
-        //     }
-        // });
         let resp=deleteUser(data.email);
         res.json({ message: "Se ha elminado el usuario correctamente" })
     }catch{
@@ -35,5 +21,35 @@ userController.deleteUser=async(req,res)=>{
 
     }
 }
+
+// userController.updateUser=async(req,res)=>{
+//     try{
+//         let data=req.body;
+//         let resp=updateUser(data.email,data.password,data.name);
+//         res.json({ message: "Se ha actualizado el usuario correctamente" })
+// }catch{
+
+// }
+// }
+
+userController.updateUser = async (req, res) => {
+    let user = req.body
+    let searchUser = findUser(req.auth.email);
+    
+    let newPassword = searchUser.password;
+    let newEmail=searchUser.email;
+    if (user.password) {
+        newPassword = encryptPassword(user.password)
+    }
+
+    if (user.email){
+        newEmail=user.email;
+    }
+
+    let resp = updateUser(req.auth.email,newEmail,newPassword);
+    res.json({
+        resp, message: "El usuario se ha modificado correctamente"
+    })
+};
 
 module.exports = userController;
