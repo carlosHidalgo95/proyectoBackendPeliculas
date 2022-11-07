@@ -11,6 +11,7 @@ Parte backend para una aplicación tipo videoclub
 ### Resumen del proyecto
 El proyecto consta de 6 tablas:movies,series,articles,orders,users y rols. Además,algunos de los endpoints solo pueden ser ejecutados por usuarios con permisos para ello. Cualquiera puede sacar listados de peliculas y series,ya sea por ID,por titulo o por genero,además se pueden obtener las series que vayan a tener un pase en teatros o cines y las series que se vayan a emitir en los próximos 7 dias.En la parte de usuarios podemos registrar usuarios,logearnos,borrar usuarios (solo puede realizarlo el administrador) y editar nuestro usuario. En cuanto a los pedidos,un pedido solo contiene un único articulo,y un usuario puede obtener una lista de sus pedidos,así como generarlos.
 ## Diagrama Entidad Relación
+![image](https://user-images.githubusercontent.com/50781684/200440159-3ac5eece-c8d2-48a3-8b24-98f3d3347cfd.png)
 
 ## Endpoints
 ### Movies
