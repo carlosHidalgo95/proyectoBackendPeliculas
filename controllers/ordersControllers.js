@@ -24,6 +24,65 @@ orderController.getOrdersByUser = async (req, res) => {
     res.send(resp);
 }
 
+// GENERAR NUEVO PEDIDO (PELICULA)            
+orderController.postNewOrder = async (req, res) => {
+    try {
+        let body = req.body;
+        let movie;
+        let serie;
+        let repeated;
+        let validType=true;
+        let idArticle;
+        if(body.type==="movie"){
+             movie = await models.movie.findOne({
+                where: { title:{[Op.like]: "%"+body.title+"%"} }
+            })
+             repeated = await models.order.findOne({
+                where: {
+                    id_user: req.auth.id,
+                    id_article: movie.id_article,
+                }
+            })
+            idArticle=movie.id_article;
+        }else if(body.type==="serie"){
+            serie = await models.serie.findOne({
+                where: { title:{[Op.like]: "%"+body.title+"%"} }
+            })
+             repeated = await models.order.findOne({
+                where: {
+                    id_user: req.auth.id,
+                    id_article: serie.id_article,
+                }
+            })
+            idArticle=serie.id_article;
+        }else{
+            validType=false;
+            res.json({
+                message: "Tipo de articulo inválido"
+        })
+    }
+
+            if (!repeated&&validType) {
+                let resp = await models.order.create({
+                    orderDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+                    id_user: req.auth.id,
+                    id_article: idArticle
+                })
+                res.status(200).json({
+                    resp,
+                    mail: req.auth?.mail,
+                    message: "Tu pedido se ha realizado correctamente"
+                })
+            } else if(repeated) {
+                res.json({
+                    message: "No se ha realizado el pedido, ya tienes este artículo"
+                })
+            }
+    } catch (err) {
+        res.send(err)
+    }
+}
+
 orderController.updateOrder = async (req, res) => {
     try {
         let body = req.body;
@@ -69,12 +128,7 @@ orderController.updateOrder = async (req, res) => {
         let resp = await order.update({
             id_article:newIdArticle.id,
             order_date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
-        },
-            {
-                // where: {
-                //     id_article: order.id_article
-                // }
-            })
+        })
         res.status(200).json({resp,
             message: `Article changed to ${title}`
         })

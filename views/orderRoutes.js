@@ -7,6 +7,7 @@ const { authBearerMiddleware,isValidRoleAdmin } = require('../middleware/auth.mi
 
 router.get('/getAll',authBearerMiddleware,isValidRoleAdmin,ordersController.getAll);
 router.get('/getUserOrders',authBearerMiddleware, ordersController.getOrdersByUser);
+router.post('/create',authBearerMiddleware,ordersController.postNewOrder);
 router.put('/update',authBearerMiddleware,ordersController.updateOrder);
 
 module.exports = router;

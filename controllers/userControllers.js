@@ -11,6 +11,7 @@ userController.getUser = async (req, res) => {
     res.send(resp);
 }
 
+
 userController.deleteUser=async(req,res)=>{
     try{
         let data=req.auth;
