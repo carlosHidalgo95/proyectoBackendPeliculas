@@ -27,29 +27,69 @@ orderController.getOrdersByUser = async (req, res) => {
 orderController.updateOrder = async (req, res) => {
     try {
         let body = req.body;
-        let movie = await models.movies.findOne({
-            where: { title: body.name }
-        })
-        let orderedMovie = await models.orders.findOne({
-            where: {
-                id_article: movie.id_article,
-            }
-        })
-        if (body.email === req.auth?.email && movie.id_article === orderedMovie.id_article) {
-            let resp = await models.orders.update({
-                rentingDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
-            },
-                {
-                    where: {
-                        id_article: orderedMovie.id_article
-                    }
-                })
-        } res.status(200).json({
-            message: `New Date for the movie ${movie.title}`
+        let order;
+        let serie;
+        let movie;
+        let newIdArticle;
+        let title;
+        if (body.type === "movie") {
+                 movie = await models.movie.findOne({
+                where: { title: body.title }
+            })
+            order = await models.order.findOne({
+                where: {
+                    id_article: movie.id_article,
+                    id_user:req.auth.id
+                }
+            })
+            console.log(order);
+            newIdArticle=await models.movie.findOne({
+                where: { title: body.newArticle}
+            });
+            console.log(newIdArticle);
+            title=movie.title;
+        }
+        if(body.type==="serie"){
+            serie = await models.serie.findOne({
+                where: { title: body.title }
+            })
+            order = await models.order.findOne({
+                where: {
+                    id_article: serie.id_article,
+                    id_user: req.auth.id
+                }
+            })
+            newIdArticle=await models.serie.findOne({
+                where: { title: body.newArticle}
+            }).id_article;
+            title=serie.title;
+        }
+
+
+        let resp = await order.update({
+            id_article:newIdArticle.id,
+            order_date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
+        },
+            {
+                // where: {
+                //     id_article: order.id_article
+                // }
+            })
+        res.status(200).json({resp,
+            message: `Article changed to ${title}`
         })
     } catch (error) {
         res.json({ message: "That movie is not on the order" })
         console.error(error)
+    }
+}
+
+orderController.getAll = async (req, res) => {
+    try {
+        let resp = await models.order.findAll();
+        res.send(resp);
+    } catch (error) {
+        console.error(error);
     }
 }
 

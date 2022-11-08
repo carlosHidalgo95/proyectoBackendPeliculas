@@ -44,8 +44,6 @@ async function authLoginController(req, res) {
     created: Date.now(),
     role: userFound.id_rol
   }, secret);
-  let prueba=jsonwebtoken.decode(jwt,{complete:true});
-  console.log(prueba.payload);
 
   res.status(200).json({
     message: "Login successful",

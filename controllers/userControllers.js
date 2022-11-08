@@ -22,16 +22,6 @@ userController.deleteUser=async(req,res)=>{
     }
 }
 
-// userController.updateUser=async(req,res)=>{
-//     try{
-//         let data=req.body;
-//         let resp=updateUser(data.email,data.password,data.name);
-//         res.json({ message: "Se ha actualizado el usuario correctamente" })
-// }catch{
-
-// }
-// }
-
 userController.updateUser = async (req, res) => {
     let user = req.body
     let searchUser = findUser(req.auth.email);
