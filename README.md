@@ -84,6 +84,15 @@ Devuelve los pedidos del usuario.
 
 Devuelve todos los pedidos de la aplicación,es necesario logearse antes con un usuario con el rol de administrador.
 
+**POST orders/create**
+Crea un pedido nuevo,se debe pasar por el body el titulo del artículo y si es una serie o una pelicula,además el usuario debe de estar logeado y pasar el token por la cabecera.
+Ejemplo de body:
+{
+  "title":"Zouzou",
+  "type":"movie"
+}
+El type solo puede ser "movie" o "serie"
+
 **PUT orders/update**
 
 Actualiza los datos de un pedido del usuario,se deben pasar por el body el titulo del articulo antiguo,el titulo del articulo nuevo y el tipo de articulo. El usuario solo puede cambiar el articulo por otro del mismo tipo,no puede cambiar una pelicula por una serie.
@@ -93,6 +102,7 @@ Ejemplo de body:
   "type":"movie",
   "newArticle":"Windfall"
 }
+El type solo puede ser "movie" o "serie"
 
 ### Users
 **Los endpoint de users solo pueden ser realizados por usuarios logeados.**
