@@ -57,24 +57,28 @@ Recibe email y contraseña a través del body y crea un usuario si el email no e
 **POST /auth/login**
 
 Recibe email y contraseña a través del body,busca un usuario con ese correo y si lo encuentra hashea la contraseña y la compara con la de la base de datos,en caso de ser correcta,crea y devuelve un json web token.
-
-### Orders
-**GET orders/getUserOrders**
-
-Devuelve los pedidos del usuario.Para que este endpoint funcione necesitaremos haber pasado antes por /auth/login, que nos habrá devuelto un json web token que deberemos añadir a la cabecera "Authorization" de las peticiones de la siguiente forma:
+Para que algunos endpoints funcionen necesitaremos estar logeados,para ello cogemos el token que nos devuelve el endpoint de login y lo ponemos en la cabecera "Authorization" de las peticiones de la siguiente forma:
 
 ![tempsnip](https://user-images.githubusercontent.com/50781684/200200244-c177a43b-6ab5-42b5-ba2a-37527b47e9b3.png)
 
+### Orders
+**Los endpoint de orders solo pueden ser realizados por usuarios logeados.**
+
+**GET orders/getUserOrders**
+
+Devuelve los pedidos del usuario.
+
 **GET orders/getAll**
 
-Devuelve todos los pedidos de la aplicación,es necesario loggearse antes con un usuario con el rol de administrador y pasar el token por la cabecera
+Devuelve todos los pedidos de la aplicación,es necesario logearse antes con un usuario con el rol de administrador.
 
 ### Users
-**Los endpoint de users solo pueden ser realizados por usuarios loggeados.**
+**Los endpoint de users solo pueden ser realizados por usuarios logeados.**
 
 **GET users/get**
 
 Recibe el token por la cabecera y muestra los datos del usuario.
+
 **DELETE users/delete**
 
 Recibe un parametro email a través del body y borra al usuario correspondiente,solo puede realizarlo un usuario con rol de administrador.
