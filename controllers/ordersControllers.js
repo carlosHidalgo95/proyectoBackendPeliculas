@@ -1,5 +1,4 @@
 const models = require('../models/index');
-// const user=require("../models/user")
 const { Op, json } = require("sequelize");
 const {findUser}=require("../services/user.services")
 const jsonwebtoken = require("jsonwebtoken");
@@ -105,11 +104,9 @@ orderController.updateOrder = async (req, res) => {
                     id_user:req.auth.id
                 }
             })
-            console.log(order);
             newIdArticle=await models.movie.findOne({
                 where: { title: body.newArticle}
             });
-            console.log(newIdArticle);
             title=movie.title;
         }
         if(body.type==="serie"){
