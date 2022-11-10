@@ -8,7 +8,7 @@ seriesController.getSeries = async (req, res) => {
     res.send(resp);
 }
 
-/* This is a function that is getting a movie by its id. */
+/* SELECCIONAR SERIE POR ID. */
 seriesController.getSeriesById = async (req, res) => {
     let resp = await models.serie.findAll({ 
         where: { 
@@ -17,6 +17,8 @@ seriesController.getSeriesById = async (req, res) => {
      });
     res.send(resp);
 }
+
+//SELECCIONAR SERIE POR TITULO
 
 seriesController.getSeriesByTitle = async (req, res) => {
     let resp = await models.serie.findAll({ 
@@ -27,6 +29,8 @@ seriesController.getSeriesByTitle = async (req, res) => {
     res.send(resp);
 }
 
+//SEELECCIONAR SERIE POR GENERO
+
 seriesController.getSeriesByGenre = async (req, res) => {
     let resp = await models.serie.findAll({ 
         where: { 
@@ -36,17 +40,21 @@ seriesController.getSeriesByGenre = async (req, res) => {
     res.send(resp);
 }
 
+//SELECCIONAR SERIES CON RATING MAS ALTO
+
 seriesController.getTopRatedSeries = async (req, res) => {
     let resp = await models.serie.findAll({
         where: {
             rating: {
-                [Op.gt]: 8
+                [Op.gt]: 4
             }
         }
     });
 
     res.send(resp);
 }
+
+//SELECCIONAR SERIES QUE SE ESTRENARÁN PRONTO
 
 seriesController.getComingSoonSeries=async(req,res)=>{
     let resp = await models.serie.findAll({

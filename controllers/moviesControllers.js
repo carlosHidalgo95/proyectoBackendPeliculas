@@ -3,12 +3,15 @@ const { Op } = require("sequelize");
 
 const moviesController = {}
 
+//SELECCIONAR TODAS LAS PELICULAS
+
 moviesController.getMovies = async (req, res) => {
     let resp = await models.movie.findAll();
     res.send(resp);
 }
 
-/* This is a function that is getting a movie by its id. */
+/* SELECCIONAR PELICULA POR ID. */
+
 moviesController.getMoviesById = async (req, res) => {
     let resp = await models.movie.findAll({ 
         where: { 
@@ -18,15 +21,18 @@ moviesController.getMoviesById = async (req, res) => {
     res.send(resp);
 }
 
-/* This is a function that is getting a movie by its title. */
+/* SELECCIONAR PELICULA POR TÍTULO. */
+
 moviesController.getMoviesByTitle = async (req, res) => {
     let resp = await models.movie.findAll({ 
         where: { 
-            title: req.params.title
+            title: {[Op.like]: "%"+req.params.title+"%"}
         }
      });
     res.send(resp);
 }
+
+/* SELECCIONAR PELICULA POR GENERO. */
 
 moviesController.getMoviesByGenre = async (req, res) => {
     let resp = await models.movie.findAll({ 
@@ -36,6 +42,8 @@ moviesController.getMoviesByGenre = async (req, res) => {
      });
     res.send(resp);
 }
+
+/* SELECCIONAR PELICULAS CON RATING MAS ALTO. */
 
 moviesController.getTopRatedMovies = async (req, res) => {
     let resp = await models.movie.findAll({

@@ -1,7 +1,7 @@
 const models = require("../models/index");
 
 function findUser(email){
-    let resp =  models.user.findOne({
+    let resp =   models.user.findOne({
         where: {
             email
         }

@@ -1,19 +1,17 @@
 const models = require('../models/index');
 // const user=require("../models/user")
 const { Op, json } = require("sequelize");
+const {findUser}=require("../services/user.services")
 const jsonwebtoken = require("jsonwebtoken");
 
 
 const orderController = {}
 
+//SELECCIONAR PEDIDOS DEL USUARIO
+
 orderController.getOrdersByUser = async (req, res) => {
     let data = req.auth;
-    let user = await models.user.findOne({
-        where: {
-            email: data.email
-        }
-    });
-
+    let user = await findUser(data.email);
     let resp = await models.order.findAll(
         {
             where: {
@@ -21,10 +19,14 @@ orderController.getOrdersByUser = async (req, res) => {
             }
         }
     );
+    if (!resp) {
+        res.status(401).json({ message: "No orders found" });
+        return;
+    }
     res.send(resp);
 }
 
-// GENERAR NUEVO PEDIDO (PELICULA)            
+// GENERAR NUEVO PEDIDO             
 orderController.postNewOrder = async (req, res) => {
     try {
         let body = req.body;
@@ -58,7 +60,7 @@ orderController.postNewOrder = async (req, res) => {
         }else{
             validType=false;
             res.json({
-                message: "Tipo de articulo inválido"
+                message: "Invalid type"
         })
     }
 
@@ -71,17 +73,19 @@ orderController.postNewOrder = async (req, res) => {
                 res.status(200).json({
                     resp,
                     mail: req.auth?.mail,
-                    message: "Tu pedido se ha realizado correctamente"
+                    message: "Order was created succesfully"
                 })
             } else if(repeated) {
                 res.json({
-                    message: "No se ha realizado el pedido, ya tienes este artículo"
+                    message: "You already have that item registered"
                 })
             }
     } catch (err) {
         res.send(err)
     }
 }
+
+//ACTUALIZAR PEDIDO
 
 orderController.updateOrder = async (req, res) => {
     try {
@@ -137,6 +141,8 @@ orderController.updateOrder = async (req, res) => {
         console.error(error)
     }
 }
+
+//SELECCIONAR TODOS LOS PEDIDOS
 
 orderController.getAll = async (req, res) => {
     try {

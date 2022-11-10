@@ -1,25 +1,17 @@
 const jsonwebtoken = require("jsonwebtoken");
-const UserModel = require("../models/user.js");
 const models = require("../models/index.js");
+const {findUser} = require("../services/user.services")
 
 const {
   assertValidPasswordService,
   assertEmailIsUniqueService,
-  assertEmailIsValid,
   createUserService,
   encryptPassword,
 } = require("../services/auth.services.js");
-/**
- * It takes a user's email and password, checks if the user exists, then checks if the password is
- * correct, then creates a JWT token and sends it back to the user.
- * @param req - The request object.
- * @param res - The response object.
- * @returns The JWT is being returned.
- */
+
 async function authLoginController(req, res) {
   const { email, password } = req.body;
-  const userFound = await models.user.findOne({
-    where:{ email: email }});
+  const userFound = await findUser(email);
   if (!userFound) {
     res.status(401).json({ message: "Password or email is incorrect" });
     return;
@@ -32,10 +24,6 @@ async function authLoginController(req, res) {
   }
 
   const secret = process.env.JWT_SECRET || '';
-
-  if (secret.length < 10) {
-    throw new Error("JWT_SECRET is not set");
-  }
 
 /* Creating a JWT token. */
   const jwt = jsonwebtoken.sign({
@@ -66,7 +54,6 @@ async function authRegisterController(req, res) {
     // save user
     try {
       const userCreated = await createUserService(body);
-      console.log("creado");
       res.status(201).json(userCreated);
     } catch (error) {
       console.error(error);

@@ -1,27 +1,7 @@
 const { isValidUserAndPassword } = require("../services/auth.services.js");
 const jsonwebtoken = require("jsonwebtoken");
 
-const authBasicMiddleware = async (req, res, next) => {
-  const { authorization } = req.headers;
-  let isAuthorized = false;
-  const [type, token] = authorization.split(" ");
-  if (type !== "basic") {
-    res.status(401).json({ message: "You are not authenticated" });
-    return;
-  }
-  const userAndPass = atob(token);
-  const [user, pass] = userAndPass.split(":");
-
-  if (await isValidUserAndPassword(user, pass)) {
-    isAuthorized = true;
-  }
-
-  if (isAuthorized) {
-    next();
-  } else {
-    res.status(401).json({ message: "You are not authenticated" });
-  }
-};
+//COMPROBACÓN DEL TOKEN
 
 const authBearerMiddleware = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -56,6 +36,7 @@ const authBearerMiddleware = async (req, res, next) => {
 
 };
 
+//COMPROBACIÓN DE ROL ADMINISTRADOR
 
 const isValidRoleAdmin =  (req, res, next) => {
   console.log(req.auth?.role);
@@ -66,13 +47,4 @@ const isValidRoleAdmin =  (req, res, next) => {
   }
 }
 
-
-const isValidRole = (role)  =>  (req, res, next) => {
-  if (req.auth?.role === role) {
-    next();
-  } else {
-    res.status(403).json({ message: "You are not authorized" });
-  }
-}
-
-module.exports = { authBasicMiddleware, authBearerMiddleware,isValidRoleAdmin , isValidRole};
+module.exports = { authBearerMiddleware,isValidRoleAdmin};
