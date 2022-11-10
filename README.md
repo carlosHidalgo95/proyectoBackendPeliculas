@@ -53,6 +53,10 @@ Recibe el genero por parametro en la url y muestra la serie
 
 Obtiene un listado con las series mejor valoradas (rating==5)
 
+**GET /series/comingSoon**
+
+Obtiene un listado con las series que se estrenarán en los próximos 7 dias
+
 ### Auth
 **POST /auth/register**
 
