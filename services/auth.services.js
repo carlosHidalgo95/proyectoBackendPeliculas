@@ -2,7 +2,7 @@ const models = require("../models/index");
 const crypto = require("node:crypto");
 const { REPL_MODE_SLOPPY } = require("node:repl");
 
-// This function will throw an error if the email is already registered.
+// Comprobar si el email está registrado.
 
 async function assertEmailIsUniqueService(email) {
   // validate email is unique
@@ -13,7 +13,8 @@ async function assertEmailIsUniqueService(email) {
   }
 }
 
- // It creates a user in the database with the email and password provided in the userBody object.
+ // Crea un usuario.
+
 async function createUserService(userBody) {
   const hash = encryptPassword(userBody.password);
   userBody.password = hash;
@@ -25,18 +26,8 @@ async function createUserService(userBody) {
   return created;
 }
 
- // It checks if the email is valid.
-function assertEmailIsValid(email) {
-  // must validate a valid email
-  const emailRegex =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const isValid = email.match(emailRegex);
-  if (!isValid) {
-    throw new Error("Email is invalid");
-  }
-}
+  //Recibe un string y los hashea.
 
-  //This function takes a password as a string, and returns a hash of that password as a string.
 function encryptPassword(password) {
   const hash = crypto
     .createHmac("sha512", 'no salt for now // TODO: REALLY NEED TO ADD SALT?')
@@ -44,6 +35,8 @@ function encryptPassword(password) {
     .digest("base64");
   return hash;
 }
+
+//Verificar token
 
 function verifyToken(req,res,next){
 const bearerHeader= req.headers['authorization'];
@@ -67,7 +60,6 @@ async function isValidUserAndPassword(user, pass) {
 
 module.exports = {
   assertEmailIsUniqueService,
-  assertEmailIsValid,
   createUserService,
   encryptPassword,
   verifyToken,
