@@ -61,7 +61,9 @@ Obtiene un listado con las series que se estrenarán en los próximos 7 dias
 **POST /auth/register**
 
 Recibe email y contraseña a través del body y crea un usuario si el email no está ya registrado hasheando la contraseña.
+
 Ejemplo de body:
+
 {
   "email":"testing@email",
   "password":"contraseña"
@@ -72,7 +74,9 @@ Recibe email y contraseña a través del body,busca un usuario con ese correo y 
 Para que algunos endpoints funcionen necesitaremos estar logeados,para ello cogemos el token que nos devuelve el endpoint de login y lo ponemos en la cabecera "Authorization" de las peticiones de la siguiente forma:
 
 ![tempsnip](https://user-images.githubusercontent.com/50781684/200200244-c177a43b-6ab5-42b5-ba2a-37527b47e9b3.png)
+
 Ejemplo de body:
+
 {
   "email":"pruebesita@email",
   "password":"contraseña1"
@@ -90,7 +94,9 @@ Devuelve todos los pedidos de la aplicación,es necesario logearse antes con un 
 
 **POST orders/create**
 Crea un pedido nuevo,se debe pasar por el body el titulo del artículo y si es una serie o una pelicula,además el usuario debe de estar logeado y pasar el token por la cabecera.
+
 Ejemplo de body:
+
 {
   "title":"Zouzou",
   "type":"movie"
@@ -100,7 +106,9 @@ El type solo puede ser "movie" o "serie"
 **PUT orders/update**
 
 Actualiza los datos de un pedido del usuario,se deben pasar por el body el titulo del articulo antiguo,el titulo del articulo nuevo y el tipo de articulo. El usuario solo puede cambiar el articulo por otro del mismo tipo,no puede cambiar una pelicula por una serie.
+
 Ejemplo de body:
+
 {
   "title":"Careful",
   "type":"movie",
@@ -119,6 +127,7 @@ Recibe el token por la cabecera y muestra los datos del usuario.
 
 Recibe un parametro email a través del body y borra al usuario correspondiente,solo puede realizarlo un usuario con rol de administrador.
 Ejemplo de body:
+
 {
     email:prueba@email
 }
@@ -127,6 +136,7 @@ Ejemplo de body:
 
 Recibe el token del usuario a modificar por la cabecera y la información a modificar por el body y actualiza la información del usuario.
 Ejemplo de body:
+
 {
   "email":"testing@email",
   "password":"contraseña"
