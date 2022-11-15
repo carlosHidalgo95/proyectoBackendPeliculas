@@ -68,6 +68,7 @@ Ejemplo de body:
   "email":"testing@email",
   "password":"contraseña"
 }
+
 **POST /auth/login**
 
 Recibe email y contraseña a través del body,busca un usuario con ese correo y si lo encuentra hashea la contraseña y la compara con la de la base de datos,en caso de ser correcta,crea y devuelve un json web token.
