@@ -102,6 +102,7 @@ Ejemplo de body:
   "title":"Zouzou",
   "type":"movie"
 }
+
 El type solo puede ser "movie" o "serie"
 
 **PUT orders/update**
@@ -115,6 +116,7 @@ Ejemplo de body:
   "type":"movie",
   "newArticle":"Windfall"
 }
+
 El type solo puede ser "movie" o "serie"
 
 ### Users
@@ -127,6 +129,7 @@ Recibe el token por la cabecera y muestra los datos del usuario.
 **DELETE users/delete**
 
 Recibe un parametro email a través del body y borra al usuario correspondiente,solo puede realizarlo un usuario con rol de administrador.
+
 Ejemplo de body:
 
 {
@@ -136,19 +139,23 @@ Ejemplo de body:
 **PUT users/update**
 
 Recibe el token del usuario a modificar por la cabecera y la información a modificar por el body y actualiza la información del usuario.
+
 Ejemplo de body:
 
 {
   "email":"testing@email",
   "password":"contraseña"
 }
+
 No es necesario pasar los 2 parametros a editar.
+
 ### Instrucciones de uso
 Descargar el proyecto y ejecutar el comando "npm i" para descargar las dependencias. La api se conecta con una base de datos creada en railway,en caso de querer usar una base de datos local el proyecto tiene incluidas migraciones y seeders,que se ejecutan con los siguientes comandos:
 - npx sequelize-cli db:migrate
 - npx sequelize-cli db:seed:all
 
 El usuario con el rol de administrador es el único creado en los seeders y es necesario para probar algunos de los endpoints, sus credenciales son las siguientes:
+
         email: "admin@email.com",
         password:"root"
 
