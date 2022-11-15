@@ -94,6 +94,7 @@ Devuelve los pedidos del usuario.
 Devuelve todos los pedidos de la aplicación,es necesario logearse antes con un usuario con el rol de administrador.
 
 **POST orders/create**
+
 Crea un pedido nuevo,se debe pasar por el body el titulo del artículo y si es una serie o una pelicula,además el usuario debe de estar logeado y pasar el token por la cabecera.
 
 Ejemplo de body:
