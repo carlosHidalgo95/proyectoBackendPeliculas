@@ -142,10 +142,10 @@ Recibe el token del usuario a modificar por la cabecera y la información a modi
 
 Ejemplo de body:
 
-{
-  "email":"testing@email",
-  "password":"contraseña"
-}
+  {
+    "email":"testing@email",
+    "password":"contraseña"
+  }
 
 No es necesario pasar los 2 parametros a editar.
 
