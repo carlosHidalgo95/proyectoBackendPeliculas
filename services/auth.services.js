@@ -21,7 +21,7 @@ async function createUserService(userBody) {
   let created=await models.user.create({
     email:userBody.email,
     password:hash,
-    id_rol:2
+    id_role:2
   });
   return created;
 }

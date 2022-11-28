@@ -21,6 +21,15 @@ module.exports = {
       release_date: {
         type: Sequelize.DATEONLY
       },
+      url_img: {
+        type: Sequelize.STRING
+      },
+      synopsis:{
+        type: Sequelize.TEXT
+      },
+      actors:{
+        type: Sequelize.STRING
+      },
       age_rating: {
         type: Sequelize.STRING
       },

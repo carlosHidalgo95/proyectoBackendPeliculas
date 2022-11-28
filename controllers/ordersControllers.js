@@ -1,5 +1,5 @@
 const models = require('../models/index');
-const { Op, json } = require("sequelize");
+const { Op } = require("sequelize");
 const {findUser}=require("../services/user.services")
 const jsonwebtoken = require("jsonwebtoken");
 

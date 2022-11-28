@@ -9,15 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      username:{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      dob:{
+        type: Sequelize.DATEONLY
+      },
       email: {
         allowNull: false,
+        unique:true,
         type: Sequelize.STRING
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      id_rol: {
+      id_role: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -30,11 +38,11 @@ module.exports = {
       }
     });
     await queryInterface.addConstraint('users', {
-      fields: ['id_rol'],
+      fields: ['id_role'],
       type: 'foreign key',
-      name: 'fk_user_rol',
+      name: 'fk_user_role',
       references: {
-        table: 'rols',
+        table: 'roles',
         field: 'id'
       },
       onDelete: 'cascade',

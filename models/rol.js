@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     rol_name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'rol',
+    modelName: 'role',
   });
   return rol;
 };

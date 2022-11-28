@@ -15,8 +15,14 @@ module.exports = {
       genre: {
         type: Sequelize.STRING
       },
+      actors:{
+        type: Sequelize.STRING
+      },
       rating: {
         type: Sequelize.STRING
+      },
+      synopsis:{
+        type: Sequelize.TEXT
       },
       release_date: {
         type: Sequelize.DATEONLY
@@ -26,6 +32,9 @@ module.exports = {
       },
       id_article: {
         type: Sequelize.INTEGER
+      },
+      url_img: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

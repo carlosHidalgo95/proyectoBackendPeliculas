@@ -28,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     release_date: DataTypes.DATE,
     age_rating: DataTypes.STRING,
     theater_release: DataTypes.BOOLEAN,
-    id_article:DataTypes.INTEGER
+    id_article:DataTypes.INTEGER,
+    synopsis: DataTypes.TEXT,
+    url_img: DataTypes.STRING,
+    actors: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'serie',

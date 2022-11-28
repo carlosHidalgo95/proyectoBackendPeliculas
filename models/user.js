@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      user.hasOne(models.rol,{ foreignKey: 'id'});
+      user.hasOne(models.role,{ foreignKey: 'id'});
     }
   }
   user.init({
@@ -26,11 +26,19 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    dob: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    id_rol:{
+    id_role:{
       type:DataTypes.INTEGER
     }
   }, {

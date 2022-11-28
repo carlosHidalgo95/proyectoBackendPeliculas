@@ -21,10 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     genre: DataTypes.STRING,
+    actors: DataTypes.STRING,
     rating: DataTypes.STRING,
     release_date: DataTypes.DATE,
+    synopsis: DataTypes.TEXT,
     age_rating: DataTypes.STRING,
-    id_article: DataTypes.INTEGER
+    id_article: DataTypes.INTEGER,
+    url_img: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'movie',
