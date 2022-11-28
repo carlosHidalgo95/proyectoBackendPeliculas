@@ -7,7 +7,7 @@ const router = require('./router');
 
 const PORT = 3002;
 
-//SALTARSE POLITICA CORS 
+//SALTARSE POLITICA CORS DE GOOGLE CHROME PARA PRUEBAS LOCALES CON EL FRONTED
 app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
