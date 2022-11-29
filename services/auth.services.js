@@ -19,7 +19,9 @@ async function createUserService(userBody) {
   const hash = encryptPassword(userBody.password);
   userBody.password = hash;
   let created=await models.user.create({
+    username:userBody.username,
     email:userBody.email,
+    dob:userBody.dob,
     password:hash,
     id_role:2
   });
