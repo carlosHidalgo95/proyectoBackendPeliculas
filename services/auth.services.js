@@ -23,7 +23,9 @@ async function createUserService(userBody) {
     email:userBody.email,
     dob:userBody.dob,
     password:hash,
-    id_role:2
+    id_role:2,
+    createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
   });
   return created;
 }

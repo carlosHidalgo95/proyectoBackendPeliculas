@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     synopsis: DataTypes.TEXT,
     age_rating: DataTypes.STRING,
     id_article: DataTypes.INTEGER,
-    url_img: DataTypes.STRING
+    url_img: DataTypes.STRING,
+    createdAt:DataTypes.DATE,
+    updatedAt:DataTypes.DATE
   }, {
     sequelize,
     modelName: 'movie',

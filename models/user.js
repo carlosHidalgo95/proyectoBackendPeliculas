@@ -40,7 +40,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     id_role:{
       type:DataTypes.INTEGER
-    }
+    },
+    createdAt:DataTypes.DATE,
+    updatedAt:DataTypes.DATE
   }, {
     sequelize,
     modelName: 'user',
