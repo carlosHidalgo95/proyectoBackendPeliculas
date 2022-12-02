@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const router = require('./router');
 
-const PORT = 3002;
+const PORT = process.env.PORT;
 
 //SALTARSE POLITICA CORS DE GOOGLE CHROME PARA PRUEBAS LOCALES CON EL FRONTED
 app.use((req,res,next)=>{
