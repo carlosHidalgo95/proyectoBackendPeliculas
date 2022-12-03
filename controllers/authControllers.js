@@ -33,9 +33,16 @@ async function authLoginController(req, res) {
     role: userFound.id_rol
   }, secret);
 
+  const isAdmin=false;
+  if (userFound.id_rol==1) {
+    isAdmin=true;
+  }
+
   res.status(200).json({
     message: "Login successful",
     jwt: jwt,
+    username:userFound.username,
+    admin:isAdmin
   });
   
 }
