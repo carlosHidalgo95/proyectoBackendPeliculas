@@ -30,11 +30,11 @@ async function authLoginController(req, res) {
     id: userFound.id,
     email: userFound.email,
     created: Date.now(),
-    role: userFound.id_rol
+    role: userFound.id_role
   }, secret);
 
   const isAdmin=false;
-  if (userFound.id_rol==1) {
+  if (userFound.id_role==1) {
     isAdmin=true;
   }
 
