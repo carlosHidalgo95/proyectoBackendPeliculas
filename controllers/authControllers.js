@@ -33,7 +33,7 @@ async function authLoginController(req, res) {
     role: userFound.id_role
   }, secret);
 
-  const isAdmin=false;
+  let isAdmin=false;
   if (userFound.id_role==1) {
     isAdmin=true;
   }
