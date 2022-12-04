@@ -22,7 +22,7 @@ async function createUserService(userBody) {
   console.log("-----------------------------");
   console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
   console.log("-----------------------------");
-  if (new Date().getDay==0) {
+  if (new Date().getDay=="0") {
     day=`0${new Date.getDate()}`;
   }
   console.log(day);
