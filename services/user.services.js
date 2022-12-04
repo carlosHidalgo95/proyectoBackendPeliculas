@@ -1,7 +1,8 @@
 const models = require("../models/index");
 
 function findUser(email){
-    let resp =   models.user.findOne({
+    let resp =  /* A query to the database. */
+     models.user.findOne({
         where: {
             email
         }
@@ -18,11 +19,12 @@ function deleteUser(email){
     return resp;
 }
 
-function updateUser(email,newEmail,newPassword){
+function updateUser(email,newEmail,newPassword,newUsername){
     let resp=models.user.update(
         {
             email:newEmail,
-            password:newPassword
+            password:newPassword,
+            username:newUsername
         },
         {
             where: { email }

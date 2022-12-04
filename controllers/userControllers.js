@@ -39,6 +39,7 @@ userController.updateUser = async (req, res) => {
     
     let newPassword = searchUser.password;
     let newEmail=searchUser.email;
+    let newUsername=searchUser.username;
     if (user.password) {
         newPassword = encryptPassword(user.password)
     }
@@ -47,7 +48,11 @@ userController.updateUser = async (req, res) => {
         newEmail=user.email;
     }
 
-    let resp =await updateUser(req.auth.email,newEmail,newPassword);
+    if (user.username){
+        newUsername=user.username;
+    }
+
+    let resp =await updateUser(req.auth.email,newEmail,newPassword,newUsername);
     res.json({
         resp, message: "El usuario se ha modificado correctamente"
     })
