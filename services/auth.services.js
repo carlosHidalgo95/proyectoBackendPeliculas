@@ -19,7 +19,7 @@ async function createUserService(userBody) {
   const hash = encryptPassword(userBody.password);
   console.log(userBody);
   console.log("-----------------------------");
-  console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
+  console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
   console.log("-----------------------------");
   console.log(new Date().getDay());
   console.log("-----------------------------");
