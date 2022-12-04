@@ -16,12 +16,16 @@ async function assertEmailIsUniqueService(email) {
  // Crea un usuario.
 
 async function createUserService(userBody) {
+  let day;
   const hash = encryptPassword(userBody.password);
   console.log(userBody);
   console.log("-----------------------------");
   console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
   console.log("-----------------------------");
-  console.log(new Date().getDay());
+  if (new Date().getDay==0) {
+    day="0"+new Date.getDate();
+  }
+  console.log(day);
   console.log("-----------------------------");
   userBody.password = hash;
   let created=await models.user.create({
