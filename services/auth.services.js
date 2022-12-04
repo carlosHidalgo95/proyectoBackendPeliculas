@@ -24,7 +24,7 @@ async function createUserService(userBody) {
   console.log("-----------------------------");
   day=new Date().getDay();
   if (day=="0") {
-    day=`0${new Date.getDate()}`;
+    day=`0${new Date().getDate()}`;
   }
   console.log(day);
   console.log("-----------------------------");
