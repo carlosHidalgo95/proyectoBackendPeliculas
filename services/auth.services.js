@@ -35,8 +35,8 @@ async function createUserService(userBody) {
     dob:userBody.dob,
     password:hash,
     id_role:2,
-    createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
-    updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+    createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
   });
 
   return created;
