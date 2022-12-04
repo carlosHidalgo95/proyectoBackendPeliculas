@@ -21,6 +21,8 @@ async function createUserService(userBody) {
   console.log("-----------------------------");
   console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
   console.log("-----------------------------");
+  console.log(new Date().getDay());
+  console.log("-----------------------------");
   userBody.password = hash;
   let created=await models.user.create({
     username:userBody.username,
