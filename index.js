@@ -12,12 +12,14 @@ app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
+        "Origin, X-Requested-With, Content-Type, Accept,Access-Control-Request-Method, Access-Control-Request-Headers,Access-Control-Allow-Headers"
     );
     res.setHeader(
         "Access-Control-Allow-Methods",
-        "GET, POST, PUT, PATCH, DELETE,OPTIONS"
+        "GET,HEAD, POST, PUT, PATCH, DELETE,OPTIONS"
     );
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+
     next();
 });
 
