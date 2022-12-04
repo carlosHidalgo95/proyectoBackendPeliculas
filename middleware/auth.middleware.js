@@ -5,6 +5,7 @@ const jsonwebtoken = require("jsonwebtoken");
 
 const authBearerMiddleware = async (req, res, next) => {
   const { authorization } = req.headers;
+  console.log(req.headers);
   const [strategy, jwt] = authorization.split(" ");
   try {
     if (strategy.toLowerCase() !== "bearer") {
