@@ -17,6 +17,10 @@ async function assertEmailIsUniqueService(email) {
 
 async function createUserService(userBody) {
   const hash = encryptPassword(userBody.password);
+  console.log(userBody);
+  console.log("-----------------------------");
+  console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
+  console.log("-----------------------------");
   userBody.password = hash;
   let created=await models.user.create({
     username:userBody.username,
@@ -27,11 +31,7 @@ async function createUserService(userBody) {
     createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
     updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
   });
-  console.log(userBody);
-  console.log("-----------------------------");
-  console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
-  console.log("-----------------------------");
-  console.log(created);
+
   return created;
 }
 
