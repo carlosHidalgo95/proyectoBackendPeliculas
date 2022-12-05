@@ -27,6 +27,8 @@ orderController.getOrdersByUser = async (req, res) => {
                 where: { id_article: order.dataValues.id_article }
             }
         )
+        console.log("---------------MOVIE----------")
+        console.log(movie);
 
 
         if(!movie){
@@ -37,11 +39,11 @@ orderController.getOrdersByUser = async (req, res) => {
             )
 
         }
+        console.log("---------------SERIE----------")
+        console.log(serie);
     });
-    console.log("---------------MOVIE----------")
-    console.log(movie);
-    console.log("---------------SERIE----------")
-    console.log(serie);
+
+
 
 
     console.log("----------------------------------------------------");
