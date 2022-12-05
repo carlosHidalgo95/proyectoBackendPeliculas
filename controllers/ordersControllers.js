@@ -27,7 +27,7 @@ orderController.getOrdersByUser = async (req, res) => {
                 where: { id_article: order.dataValues.id_article }
             }
         )
-        resp[order].title=movie.dataValues.title;
+        resp.title=movie.dataValues.title;
         console.log("---------------MOVIE----------")
         console.log(movie);
 
