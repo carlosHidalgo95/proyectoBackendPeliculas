@@ -29,7 +29,7 @@ orderController.getOrdersByUser = async (req, res) => {
         )
         console.log("---------------MOVIE----------")
         console.log(movie);
-        resp.ostia = movie.dataValues.title;
+        order.ostia = movie.dataValues.title;
 
 
 
