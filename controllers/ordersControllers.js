@@ -29,7 +29,7 @@ orderController.getOrdersByUser = async (req, res) => {
         console.log("---------------MOVIE----------")
         console.log(movie);
         resp[index].dataValues.title = movie.dataValues.title;
-        resp[index].dataValues.url_img = serie.dataValues.url_img;
+        resp[index].dataValues.url_img = movie.dataValues.url_img;
 
         if (!movie) {
             serie = models.serie.findOne(
