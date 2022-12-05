@@ -27,7 +27,7 @@ orderController.getOrdersByUser = async (req, res) => {
                 where: { id_article: order.dataValues.id_article }
             }
         )
-        resp.title=movie.dataValues.title;
+        order.title=movie.dataValues.title;
         console.log("---------------MOVIE----------")
         console.log(movie);
 
@@ -38,7 +38,7 @@ orderController.getOrdersByUser = async (req, res) => {
                     where: { id_article: order.dataValues.id_article }
                 }
             )
-            resp.title=serie.dataValues.title;
+            order.title=serie.dataValues.title;
 
 
         }
@@ -54,6 +54,9 @@ orderController.getOrdersByUser = async (req, res) => {
         res.status(401).json({ message: "No orders found" });
         return;
     }
+    console.log("---------------RESP-----------");
+    console.log(resp);
+
     res.send(resp);
 }
 
