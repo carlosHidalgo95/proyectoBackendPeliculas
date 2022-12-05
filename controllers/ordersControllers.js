@@ -22,28 +22,29 @@ orderController.getOrdersByUser = async (req, res) => {
     console.log("OSTIA PUTAAAAA---------------------------");
     await resp.forEach(async order => {
         console.log(order.dataValues.id_article);
-        movie =await models.movie.findOne(
+        movie = await models.movie.findOne(
             {
                 where: { id_article: order.dataValues.id_article }
             }
         )
-        // resp.ostia=movie.dataValues.title;
         console.log("---------------MOVIE----------")
         console.log(movie);
+        resp.ostia = movie.dataValues.title;
 
 
-        if(!movie){
+
+        if (!movie) {
             serie = models.serie.findOne(
                 {
                     where: { id_article: order.dataValues.id_article }
                 }
             )
-            order.title=serie.dataValues.title;
+            order.title = serie.dataValues.title;
 
             console.log("---------------SERIE----------")
             console.log(serie);
         }
-  
+
     });
 
     console.log("----------------------------------------------------");
