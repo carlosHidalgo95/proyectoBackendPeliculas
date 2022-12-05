@@ -22,7 +22,7 @@ orderController.getOrdersByUser = async (req, res) => {
     console.log("OSTIA PUTAAAAA---------------------------");
     await resp.forEach( order => {
         console.log(order.dataValues.id_article);
-        movie = await models.movie.findOne(
+        movie = models.movie.findOne(
             {
                 where: { id_article: order.dataValues.id_article }
             }
@@ -34,7 +34,7 @@ orderController.getOrdersByUser = async (req, res) => {
 
 
         if (!movie) {
-            serie = await models.serie.findOne(
+            serie = models.serie.findOne(
                 {
                     where: { id_article: order.dataValues.id_article }
                 }
