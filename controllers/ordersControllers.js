@@ -27,7 +27,9 @@ orderController.getOrdersByUser = async (req, res) => {
                 where: { id_article: order.dataValues.id_article }
             }
         )
-        console.log(movie.dataValues.title)
+        console.log("---------------MOVIE----------")
+
+        console.log(movie)
 
         if(!movie){
             serie = models.serie.findOne(
@@ -35,7 +37,9 @@ orderController.getOrdersByUser = async (req, res) => {
                     where: { id_article: order.dataValues.id_article }
                 }
             )
-            console.log(serie.dataValues.title);
+            console.log("---------------SERIE----------")
+
+            console.log(serie);
         }
     });
     console.log("----------------------------------------------------");
