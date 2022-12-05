@@ -20,9 +20,9 @@ orderController.getOrdersByUser = async (req, res) => {
         }
     );
     console.log("OSTIA PUTAAAAA---------------------------");
-    await resp.forEach(order => {
+    await resp.forEach(async order => {
         console.log(order.dataValues.id_article);
-        movie = models.movie.findOne(
+        movie =await models.movie.findOne(
             {
                 where: { id_article: order.dataValues.id_article }
             }
