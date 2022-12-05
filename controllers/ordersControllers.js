@@ -20,16 +20,14 @@ orderController.getOrdersByUser = async (req, res) => {
         }
     );
     console.log("OSTIA PUTAAAAA---------------------------");
-    resp.forEach(order => {
+    await resp.forEach(order => {
         console.log(order.dataValues.id_article);
         movie = models.movie.findOne(
             {
                 where: { id_article: order.dataValues.id_article }
             }
         )
-        console.log("---------------MOVIE----------")
 
-        console.log(movie)
 
         if(!movie){
             serie = models.serie.findOne(
@@ -37,11 +35,15 @@ orderController.getOrdersByUser = async (req, res) => {
                     where: { id_article: order.dataValues.id_article }
                 }
             )
-            console.log("---------------SERIE----------")
 
-            console.log(serie);
         }
     });
+    console.log("---------------MOVIE----------")
+    console.log(movie);
+    console.log("---------------SERIE----------")
+    console.log(serie);
+
+
     console.log("----------------------------------------------------");
     if (!resp) {
         res.status(401).json({ message: "No orders found" });
