@@ -18,6 +18,9 @@ orderController.getOrdersByUser = async (req, res) => {
             }
         }
     );
+    resp.forEach(element => {
+        console.log(element);
+    });
     if (!resp) {
         res.status(401).json({ message: "No orders found" });
         return;
