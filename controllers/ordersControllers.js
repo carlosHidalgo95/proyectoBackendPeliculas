@@ -18,6 +18,7 @@ orderController.getOrdersByUser = async (req, res) => {
             }
         }
     );
+    console.log("OSTIA PUTAAAAA");
     resp.forEach(element => {
         console.log(element);
     });
