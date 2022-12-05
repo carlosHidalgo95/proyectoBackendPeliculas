@@ -24,7 +24,7 @@ orderController.getOrdersByUser = async (req, res) => {
         console.log(order.dataValues.id_article);
         movie = await models.movie.findOne(
             {
-                where: { id_article: order.dataValues.id_article }
+                where: { id_article: resp[index].dataValues.id_article }
             }
         )
         console.log("---------------MOVIE----------")
