@@ -28,14 +28,14 @@ orderController.getOrdersByUser = async (req, res) => {
         )
         console.log("---------------MOVIE----------")
         console.log(movie);
-        resp[index].dataValues.ostia = movie.dataValues.title;
+        resp[index].dataValues.title = movie.dataValues.title;
         if (!movie) {
             serie = models.serie.findOne(
                 {
                     where: { id_article: order.dataValues.id_article }
                 }
             )
-            order.title = serie.dataValues.title;
+            resp[index].dataValues.title = serie.dataValues.title;
 
             console.log("---------------SERIE----------")
             console.log(serie);
