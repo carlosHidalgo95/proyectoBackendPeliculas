@@ -29,6 +29,8 @@ orderController.getOrdersByUser = async (req, res) => {
         console.log("---------------MOVIE----------")
         console.log(movie);
         resp[index].dataValues.title = movie.dataValues.title;
+        resp[index].dataValues.url_img = serie.dataValues.url_img;
+
         if (!movie) {
             serie = models.serie.findOne(
                 {
@@ -36,6 +38,7 @@ orderController.getOrdersByUser = async (req, res) => {
                 }
             )
             resp[index].dataValues.title = serie.dataValues.title;
+            resp[index].dataValues.url_img = serie.dataValues.url_img;
 
             console.log("---------------SERIE----------")
             console.log(serie);
