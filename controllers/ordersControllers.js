@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findUser}=require("../services/user.services")
+const { findUser } = require("../services/user.services")
 const jsonwebtoken = require("jsonwebtoken");
 
 
@@ -11,6 +11,7 @@ const orderController = {}
 orderController.getOrdersByUser = async (req, res) => {
     let data = req.auth;
     let user = await findUser(data.email);
+    let movie, serie;
     let resp = await models.order.findAll(
         {
             where: {
@@ -18,9 +19,24 @@ orderController.getOrdersByUser = async (req, res) => {
             }
         }
     );
-    console.log("OSTIA PUTAAAAA");
+    console.log("OSTIA PUTAAAAA---------------------------");
     resp.forEach(order => {
-        console.log(order);
+        console.log(order.dataValues.id_article);
+        movie = models.movie.findOne(
+            {
+                where: { id_article: order.dataValues.id_article }
+            }
+        )
+        console.log(movie.title)
+
+        if(!movie){
+            serie = models.serie.findOne(
+                {
+                    where: { id_article: order.dataValues.id_article }
+                }
+            )
+            console.log(serie.title);
+        }
     });
     console.log("----------------------------------------------------");
     if (!resp) {
@@ -37,53 +53,53 @@ orderController.postNewOrder = async (req, res) => {
         let movie;
         let serie;
         let repeated;
-        let validType=true;
+        let validType = true;
         let idArticle;
-        if(body.type==="movie"){
-             movie = await models.movie.findOne({
-                where: { title:{[Op.like]: "%"+body.title+"%"} }
+        if (body.type === "movie") {
+            movie = await models.movie.findOne({
+                where: { title: { [Op.like]: "%" + body.title + "%" } }
             })
-             repeated = await models.order.findOne({
+            repeated = await models.order.findOne({
                 where: {
                     id_user: req.auth.id,
                     id_article: movie.id_article,
                 }
             })
-            idArticle=movie.id_article;
-        }else if(body.type==="serie"){
+            idArticle = movie.id_article;
+        } else if (body.type === "serie") {
             serie = await models.serie.findOne({
-                where: { title:{[Op.like]: "%"+body.title+"%"} }
+                where: { title: { [Op.like]: "%" + body.title + "%" } }
             })
-             repeated = await models.order.findOne({
+            repeated = await models.order.findOne({
                 where: {
                     id_user: req.auth.id,
                     id_article: serie.id_article,
                 }
             })
-            idArticle=serie.id_article;
-        }else{
-            validType=false;
+            idArticle = serie.id_article;
+        } else {
+            validType = false;
             res.json({
                 message: "Invalid type"
-        })
-    }
+            })
+        }
 
-            if (!repeated&&validType) {
-                let resp = await models.order.create({
-                    orderDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-                    id_user: req.auth.id,
-                    id_article: idArticle
-                })
-                res.status(200).json({
-                    resp,
-                    mail: req.auth?.mail,
-                    message: "Order was created succesfully"
-                })
-            } else if(repeated) {
-                res.json({
-                    message: "You already have that item registered"
-                })
-            }
+        if (!repeated && validType) {
+            let resp = await models.order.create({
+                orderDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+                id_user: req.auth.id,
+                id_article: idArticle
+            })
+            res.status(200).json({
+                resp,
+                mail: req.auth?.mail,
+                message: "Order was created succesfully"
+            })
+        } else if (repeated) {
+            res.json({
+                message: "You already have that item registered"
+            })
+        }
     } catch (err) {
         res.send(err)
     }
@@ -100,21 +116,21 @@ orderController.updateOrder = async (req, res) => {
         let newIdArticle;
         let title;
         if (body.type === "movie") {
-                 movie = await models.movie.findOne({
+            movie = await models.movie.findOne({
                 where: { title: body.title }
             })
             order = await models.order.findOne({
                 where: {
                     id_article: movie.id_article,
-                    id_user:req.auth.id
+                    id_user: req.auth.id
                 }
             })
-            newIdArticle=await models.movie.findOne({
-                where: { title: body.newArticle}
+            newIdArticle = await models.movie.findOne({
+                where: { title: body.newArticle }
             });
-            title=movie.title;
+            title = movie.title;
         }
-        if(body.type==="serie"){
+        if (body.type === "serie") {
             serie = await models.serie.findOne({
                 where: { title: body.title }
             })
@@ -124,18 +140,19 @@ orderController.updateOrder = async (req, res) => {
                     id_user: req.auth.id
                 }
             })
-            newIdArticle=await models.serie.findOne({
-                where: { title: body.newArticle}
+            newIdArticle = await models.serie.findOne({
+                where: { title: body.newArticle }
             }).id_article;
-            title=serie.title;
+            title = serie.title;
         }
 
 
         let resp = await order.update({
-            id_article:newIdArticle.id,
+            id_article: newIdArticle.id,
             order_date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
         })
-        res.status(200).json({resp,
+        res.status(200).json({
+            resp,
             message: `Article changed to ${title}`
         })
     } catch (error) {
