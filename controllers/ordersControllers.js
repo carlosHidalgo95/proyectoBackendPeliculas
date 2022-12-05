@@ -40,10 +40,10 @@ orderController.getOrdersByUser = async (req, res) => {
             )
             order.title=serie.dataValues.title;
 
-
+            console.log("---------------SERIE----------")
+            console.log(serie);
         }
-        console.log("---------------SERIE----------")
-        console.log(serie);
+  
     });
 
 
