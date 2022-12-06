@@ -19,14 +19,12 @@ orderController.getOrdersByUser = async (req, res) => {
             }
         }
     );
-    console.log("OSTIA PUTAAAAA---------------------------");
     for (let index = 0; index < resp.length; index++) {
         movie = await models.movie.findOne(
             {
                 where: { id_article: resp[index].dataValues.id_article }
             }
         )
-        console.log("---------------MOVIE----------")
         console.log(movie);
         resp[index].dataValues.title = movie.dataValues.title;
         resp[index].dataValues.url_img = movie.dataValues.url_img;
@@ -95,8 +93,12 @@ orderController.postNewOrder = async (req, res) => {
         }
 
         if (!repeated && validType) {
+            var date = new Date();
+            date.setDate(date.getDate() + 7);
+            console.log(date);
             let resp = await models.order.create({
-                orderDate: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+                order_date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+                return_date:date,
                 id_user: req.auth.id,
                 id_article: idArticle
             })

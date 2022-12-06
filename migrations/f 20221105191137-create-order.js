@@ -12,6 +12,9 @@ module.exports = {
       order_date: {
         type: Sequelize.DATEONLY
       },
+      return_date: {
+        type: Sequelize.DATEONLY
+      },
       id_article: {
         type: Sequelize.INTEGER
       },

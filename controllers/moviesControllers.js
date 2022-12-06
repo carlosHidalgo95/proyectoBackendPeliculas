@@ -44,8 +44,6 @@ moviesController.searchMovies = async (req, res) => {
                     }
 
                 ]
-
-
         }
     });
     res.send(resp);

@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     order_date: DataTypes.DATEONLY,
+    return_date:DataTypes.DATEONLY,
     id_user:DataTypes.INTEGER,
     id_article: DataTypes.INTEGER
   },
