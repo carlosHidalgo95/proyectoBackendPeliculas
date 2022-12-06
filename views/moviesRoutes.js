@@ -6,7 +6,7 @@ const db = require('../db/db');
 
 router.get('/', moviesController.getMovies);
 router.get('/byId/:id',moviesController.getMoviesById);
-router.get('/byTitle/:title',moviesController.getMoviesByTitle);
+router.get('/search/:word',moviesController.searchMovies);
 router.get('/byGenre/:genre',moviesController.getMoviesByGenre);
 router.get('/topRated', moviesController.getTopRatedMovies);
 

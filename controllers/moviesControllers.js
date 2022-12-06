@@ -23,10 +23,25 @@ moviesController.getMoviesById = async (req, res) => {
 
 /* SELECCIONAR PELICULA POR TÍTULO. */
 
-moviesController.getMoviesByTitle = async (req, res) => {
+moviesController.searchMovies = async (req, res) => {
     let resp = await models.movie.findAll({ 
         where: { 
-            title: {[Op.like]: "%"+req.params.title+"%"}
+            where: {
+                [Op.or]: {
+                    title: {
+                        [Op.like]: "%" + req.params.word + "%"
+                    },
+                    genre: {
+                        [Op.like]: "%" + req.params.word + "%"
+                    },
+                    actors: {
+                        [Op.like]: "%" + req.params.word + "%"
+                    }
+    
+                }
+            }
+
+
         }
      }); 
     res.send(resp);

@@ -10,33 +10,44 @@ seriesController.getSeries = async (req, res) => {
 
 /* SELECCIONAR SERIE POR ID. */
 seriesController.getSeriesById = async (req, res) => {
-    let resp = await models.serie.findAll({ 
-        where: { 
-            id: req.params.id 
+    let resp = await models.serie.findAll({
+        where: {
+            id: req.params.id
         }
-     });
+    });
     res.send(resp);
 }
 
 //SELECCIONAR SERIE POR TITULO
 
-seriesController.getSeriesByTitle = async (req, res) => {
-    let resp = await models.serie.findAll({ 
-        where: { 
-            title: req.params.title
+seriesController.searchSeries = async (req, res) => {
+    let resp = await models.serie.findAll({
+        where: {
+            [Op.or]: {
+                title: {
+                    [Op.like]: "%" + req.params.word + "%"
+                },
+                genre: {
+                    [Op.like]: "%" + req.params.word + "%"
+                },
+                actors: {
+                    [Op.like]: "%" + req.params.word + "%"
+                }
+
+            }
         }
-     });
+    });
     res.send(resp);
 }
 
 //SEELECCIONAR SERIE POR GENERO
 
 seriesController.getSeriesByGenre = async (req, res) => {
-    let resp = await models.serie.findAll({ 
-        where: { 
+    let resp = await models.serie.findAll({
+        where: {
             genre: req.params.genre
         }
-     });
+    });
     res.send(resp);
 }
 
@@ -56,11 +67,11 @@ seriesController.getTopRatedSeries = async (req, res) => {
 
 //SELECCIONAR SERIES QUE SE ESTRENARÁN PRONTO
 
-seriesController.getComingSoonSeries=async(req,res)=>{
+seriesController.getComingSoonSeries = async (req, res) => {
     let resp = await models.serie.findAll({
         where: {
             release_date: {
-                [Op.between]: [new Date(), new Date().setDate(new Date().getDate() + 7)] 
+                [Op.between]: [new Date(), new Date().setDate(new Date().getDate() + 7)]
             }
         }
     });
