@@ -13,48 +13,54 @@ moviesController.getMovies = async (req, res) => {
 /* SELECCIONAR PELICULA POR ID. */
 
 moviesController.getMoviesById = async (req, res) => {
-    let resp = await models.movie.findAll({ 
-        where: { 
-            id: req.params.id 
+    let resp = await models.movie.findAll({
+        where: {
+            id: req.params.id
         }
-     });
+    });
     res.send(resp);
 }
 
 /* SELECCIONAR PELICULA POR TÍTULO. */
 
 moviesController.searchMovies = async (req, res) => {
-    let resp = await models.movie.findAll({ 
-        where: { 
+    let resp = await models.movie.findAll({
+        where: {
             where: {
-                [Op.or]: {
-                    title: {
-                        [Op.like]: "%" + req.params.word + "%"
+                [Op.or]: [
+                    {
+                        title: {
+                            [Op.like]: "%" + req.params.word + "%"
+                        }
                     },
-                    genre: {
-                        [Op.like]: "%" + req.params.word + "%"
+                    {
+                        genre: {
+                            [Op.like]: "%" + req.params.word + "%"
+                        }
                     },
-                    actors: {
-                        [Op.like]: "%" + req.params.word + "%"
+                    {
+                        actors: {
+                            [Op.like]: "%" + req.params.word + "%"
+                        }
                     }
-    
-                }
+
+                ]
             }
 
 
         }
-     }); 
+    });
     res.send(resp);
 }
 
 /* SELECCIONAR PELICULA POR GENERO. */
 
 moviesController.getMoviesByGenre = async (req, res) => {
-    let resp = await models.movie.findAll({ 
-        where: { 
-            genre:{[Op.like]: "%"+req.params.genre+"%"}
+    let resp = await models.movie.findAll({
+        where: {
+            genre: { [Op.like]: "%" + req.params.genre + "%" }
         }
-     });
+    });
     res.send(resp);
 }
 
