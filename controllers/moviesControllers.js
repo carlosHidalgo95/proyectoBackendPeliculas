@@ -1,5 +1,6 @@
 const models = require('../models/index');
-  
+const { Op } = require("sequelize");
+
 const moviesController = {}
 
 //SELECCIONAR TODAS LAS PELICULAS
@@ -27,7 +28,7 @@ moviesController.getMoviesByTitle = async (req, res) => {
         where: { 
             title: {[Op.like]: "%"+req.params.title+"%"}
         }
-     });
+     }); 
     res.send(resp);
 }
 
