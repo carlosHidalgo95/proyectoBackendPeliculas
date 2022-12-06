@@ -18,10 +18,6 @@ async function assertEmailIsUniqueService(email) {
 async function createUserService(userBody) {
   let day;
   const hash = encryptPassword(userBody.password);
-  console.log(userBody);
-  console.log("-----------------------------");
-  console.log(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
-  console.log("-----------------------------");
   day=new Date().getDay();
   if (day=="0") {
     day=`0${new Date().getDate()}`;

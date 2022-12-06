@@ -29,6 +29,7 @@ async function authLoginController(req, res) {
   const jwt = jsonwebtoken.sign({
     id: userFound.id,
     email: userFound.email,
+    username:userFound.username,
     created: Date.now(),
     role: userFound.id_role
   }, secret);
