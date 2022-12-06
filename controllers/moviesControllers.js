@@ -26,7 +26,6 @@ moviesController.getMoviesById = async (req, res) => {
 moviesController.searchMovies = async (req, res) => {
     let resp = await models.movie.findAll({
         where: {
-            where: {
                 [Op.or]: [
                     {
                         title: {
@@ -45,7 +44,6 @@ moviesController.searchMovies = async (req, res) => {
                     }
 
                 ]
-            }
 
 
         }
