@@ -20,21 +20,27 @@ orderController.getOrdersByUser = async (req, res) => {
         }
     );
     for (let index = 0; index < resp.length; index++) {
-        movie = await models.movie.findOne(
-            {
-                where: { id_article: resp[index].dataValues.id_article }
-            }
-        )
-        console.log(movie);
-        resp[index].dataValues.title = movie.dataValues.title;
-        resp[index].dataValues.url_img = movie.dataValues.url_img;
-
-        if (!movie) {
-            serie = models.serie.findOne(
+        try{
+            movie = await models.movie.findOne(
                 {
-                    where: { id_article: order.dataValues.id_article }
+                    where: { id_article: resp[index].dataValues.id_article }
                 }
             )
+            console.log(movie);
+            resp[index].dataValues.title = movie.dataValues.title;
+            resp[index].dataValues.url_img = movie.dataValues.url_img;
+        }catch(error){
+
+        }
+
+
+        if (!movie) {
+            serie = await models.serie.findOne(
+                {
+                    where: { id_article: resp[index].dataValues.id_article }
+                }
+            )
+            console.log(serie);
             resp[index].dataValues.title = serie.dataValues.title;
             resp[index].dataValues.url_img = serie.dataValues.url_img;
 

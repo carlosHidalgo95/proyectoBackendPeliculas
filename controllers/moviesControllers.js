@@ -35,7 +35,7 @@ moviesController.searchMovies = async (req, res) => {
                     {
                         genre: {
                             [Op.like]: "%" + req.params.word + "%"
-                        }
+                        } 
                     },
                     {
                         actors: {
